@@ -1,12 +1,14 @@
-FROM python:3.13-alpine
+FROM python:3.13-trixie
 
-RUN apk add git && \
-  rm -r /var/cache && \
-  sed -i s_/root_/outputs_ /etc/passwd && \
-  git clone https://github.com/zanllp/sd-webui-infinite-image-browsing.git /infimage && \
-  python -m venv /infimage/venv && \
-  /infimage/venv/bin/pip install --upgrade pip && \
-  /infimage/venv/bin/pip install -r /infimage/requirements.txt
+RUN apt-get update \
+  && apt-get install -y git libavformat61 libavdevice61 \
+    build-essential libavformat-dev libavdevice-dev \
+  && git clone https://github.com/zanllp/sd-webui-infinite-image-browsing.git /infimage \
+  && pip3 install -r /infimage/requirements.txt \
+  && apt-get -y purge build-essential libavformat-dev libavdevice-dev \
+  && apt-get -y autoremove \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 COPY entry.sh /usr/local/bin
 COPY config.json /

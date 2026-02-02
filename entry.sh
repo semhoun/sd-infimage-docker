@@ -32,9 +32,5 @@ echo checking .env file:
 cat .env
 echo
 
-echo checking python version
-/infimage/venv/bin/python --version
-echo
-
 echo launching app.py
-/infimage/venv/bin/python app.py --port="$PORT" --extra_paths=$EXTRA_PATHS --sd_webui_config="/config.json" $EXTRA_OPTIONS
+python3 app.py --port="$PORT" --extra_paths=$EXTRA_PATHS --sd_webui_config="/config.json" $EXTRA_OPTIONS

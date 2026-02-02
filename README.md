@@ -1,11 +1,11 @@
-This is a docker container for https://github.com/zanllp/sd-webui-infinite-image-browsing. It can be run via `docker run -d --name iib -p 8080:8080 -v /path/to/sdoutput/txt2img:/outputs du5tball/iib:latest`. However, I don't regularly build images, so you are encouraged to build your own instead! This can be done via `docker build . -t du5tball/iib:latest` (you can change the tag to whatever you wish).
+This is a docker container for https://github.com/zanllp/sd-webui-infinite-image-browsing. It can be run via `docker run -d --name iib -p 8080:8080 -v /path/to/sdoutput/txt2img:/outputs semhoun/iib:latest`. However, I don't regularly build images, so you are encouraged to build your own instead! This can be done via `docker build . -t semhoun/iib:latest` (you can change the tag to whatever you wish).
 
 Or if you use docker-compose, which gives you the advantage of building and autotagging the image:
 
 ```yaml
 services:
   iib:
-    build: https://github.com/du5tball/sd-infimage-docker.git#main
+    build: https://github.com/semhoun/sd-infimage-docker.git#main
     restart: always
     ports:
       - 8080:8080
